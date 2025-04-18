@@ -5,9 +5,17 @@ object casaDePepeYJulian {
     const property listaCompras = []
     var property cuentaActual = cuentaCorriente
 
+    method saldoCuentaActual() {
+      return cuentaActual.saldo()
+    }
+
     method comprar(cosa) {
         listaCompras.add(cosa)
-        cuentaActual.extraer(cosa.precio())
+    }
+
+    method comprarYPagar(cosa){
+      self.comprar(cosa)
+      cuentaActual.extraer(cosa.precio())
     }
 
     method compras() {
@@ -16,10 +24,6 @@ object casaDePepeYJulian {
 
     method cantidadDeCosasCompradas() {
       return listaCompras.size()
-    }
-
-    method compraDe(categoria){
-        return 
     }
 
     method tieneAlgun(categoria){
@@ -61,7 +65,7 @@ object casaDePepeYJulian {
 
 object cuentaCorriente {
 
-    var property saldo = 0
+    var property saldo = 5000
 
     method validarExtraer(cantidad) {
       if (saldo < cantidad){

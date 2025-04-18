@@ -89,13 +89,12 @@ describe "Cuentas Bancarias" {
     cuentaConGastos.extraer(2000)
     assert.equals(-550, cuentaConGastos.saldo())
   }
-
   test "Se pide que al comprar una cosa  eso se vea afectado en la cuenta elegida previamente" {
+    cuentaCorriente.saldo(1000)
     casaDePepeYJulian.cuentaActual(cuentaCorriente)
-    casaDePepeYJulian.cuentaActual.saldo(1000)
-    casaDePepeYJulian.comprar(tiraDeAsado)
-    assert.equals(650, casaDePepeYJulian.cuentaActual.saldo())
-    casaDePepeYJulian.comprar(paqueteDeFideos)
-    assert.equals(600, casaDePepeYJulian.cuentaActual.saldo())
+    casaDePepeYJulian.comprarYPagar(tiraDeAsado)
+    assert.equals(650, casaDePepeYJulian.saldoCuentaActual())
+    casaDePepeYJulian.comprarYPagar(paqueteDeFideos)
+    assert.equals(600, casaDePepeYJulian.saldoCuentaActual())
   }
 }
